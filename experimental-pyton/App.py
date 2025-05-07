@@ -6,11 +6,13 @@ class App:
         tam = 100000
         self.arregloBurbuja = self.generar_datos(tam)
         self.arregloSeleccion = self.arregloBurbuja.copy()
+        self.arregloSort = self.arregloBurbuja.copy()
 
     def ejecutar_benchmark(self):
-        metodos = { # Diccionario
+        metodos = {
             "burbuja": self.ordenar_burbuja,
             "seleccion": self.ordenar_seleccion,
+            "sort": self.ordenar_sort
         }
 
         for nombre, metodo in metodos.items():
@@ -18,11 +20,7 @@ class App:
             print(f"Tamaño: {len(self.arregloBurbuja)}, Método: {nombre}, Tiempo: {tiempo:.6f} segundos")
 
     def generar_datos(self, tam):
-        array = []
-        for i in range(tam):
-            numero = random.randint(0,99999)
-            array.append(numero)
-        return array
+        return [random.randint(0, 99999) for _ in range(tam)]
 
     def medir_tiempo(self, tarea, arr):
         inicio = time.perf_counter()
@@ -47,7 +45,9 @@ class App:
             if minIndex != i:
                 arreglo[i], arreglo[minIndex] = arreglo[minIndex], arreglo[i]
 
+    def ordenar_sort(self, arreglo):
+        arreglo.sort()
+
 if __name__ == "__main__":
     app = App()
     app.ejecutar_benchmark()
-
