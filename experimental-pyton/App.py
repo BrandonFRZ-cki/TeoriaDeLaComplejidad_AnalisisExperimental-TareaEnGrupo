@@ -8,7 +8,7 @@ class App:
         self.arregloSeleccion = self.arregloBurbuja.copy()
 
     def ejecutar_benchmark(self):
-        metodos = {# Diccionario
+        metodos = { # Diccionario
             "burbuja": self.ordenar_burbuja,
             "seleccion": self.ordenar_seleccion,
         }
